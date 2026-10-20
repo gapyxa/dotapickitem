@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dota 2 Item Pick by GAPYXA</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700&family=Philosopher:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0a0c0f;--p:#14181e;--p2:#1b2028;--b:#2a313b;--t:#e8e6e1;--m:#8b94a1;--r:#c23c2a;--g:#d8b26a;--ok:#5fa83c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#1a1214 0,var(--bg) 55%);color:var(--t);font:600 16px Rajdhani,"Segoe UI",sans-serif;min-height:100vh}
+header{padding:18px 24px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,#2a1210,transparent)}
+.logo{font:700 24px Cinzel,Georgia,serif;letter-spacing:2px}.logo span{color:var(--r)}
+header small{color:var(--m)}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;padding:18px;max-width:1400px;margin:auto}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--p);border:1px solid var(--b);border-radius:10px;padding:14px}
+h2{font:700 14px Cinzel,serif;letter-spacing:1.5px;color:var(--g);margin:0 0 10px;text-transform:uppercase}
+input{width:100%;background:var(--p2);border:1px solid var(--b);color:var(--t);border-radius:8px;padding:10px 12px;font:600 16px Rajdhani,sans-serif;outline:none}
+input:focus{border-color:var(--r)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.btn{background:var(--p2);border:1px solid var(--b);color:var(--t);border-radius:8px;padding:7px 12px;cursor:pointer;font:700 14px Rajdhani,sans-serif}
+.btn.on{background:var(--r);border-color:var(--r)}
+.btn.my.on{background:var(--ok);border-color:var(--ok)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;max-height:560px;overflow-y:auto;padding-right:4px}
+.h{background:none;border:0;color:var(--t);cursor:pointer;padding:3px;border-radius:8px;font:600 11px Rajdhani,sans-serif;text-align:center}
+.h:hover{background:var(--p2)}.h.used{opacity:.25;pointer-events:none}
+.h b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.ic{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:6px;border:2px solid;font:700 18px Cinzel,serif;text-shadow:0 1px 3px #000}.ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.team{margin-bottom:14px}.team h2.my{color:var(--ok)}.team h2.en{color:var(--r)}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.slot{min-height:84px;border:1px dashed var(--b);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--m);padding:4px;cursor:pointer;font-size:12px;text-align:center}
+.slot .ic{width:100%;font-size:14px}
+.slot.f{border-style:solid;background:var(--p2)}.slot.f:hover{border-color:var(--r)}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.chip{font-size:12px;background:var(--p2);border:1px solid var(--b);border-radius:20px;padding:2px 9px;color:var(--m)}
+.bar{height:34px;border-radius:8px;overflow:hidden;display:flex;font:700 18px Rajdhani,sans-serif;border:1px solid var(--b)}
+.bar div{display:flex;align-items:center;justify-content:center;transition:width .5s;min-width:46px}
+.bar .a{background:linear-gradient(90deg,#2f6a1c,var(--ok))}.bar .e{background:linear-gradient(90deg,var(--r),#7c1e12)}
+.sub{display:flex;justify-content:space-between;color:var(--m);font-size:13px;margin-top:6px}
+.it{background:var(--p2);border-radius:8px;padding:10px;margin-bottom:8px;border-left:3px solid var(--g)}
+.it b{color:var(--g)}.tag{display:inline-block;background:#2a1f10;border:1px solid #5a4620;color:var(--g);border-radius:6px;padding:2px 8px;margin:3px 4px 0 0;font-size:14px}
+.why{color:var(--m);font-size:13px}
+.tag.hit{background:#1d3a14;border-color:var(--ok);color:#a7e08a}.ai{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.ai p{margin:6px 0 0;color:var(--m);font-size:13px;flex-basis:100%}
+
+body{background:radial-gradient(ellipse at 50% -10%,#3a1410 0,transparent 55%),radial-gradient(ellipse at 100% 100%,#101a2a 0,transparent 50%),#07090c}
+header{border-bottom:2px solid #5a4620;box-shadow:0 4px 24px #c23c2a33;background:linear-gradient(90deg,#3a1511,#14181e 60%,#0d1015)}
+.logo{text-shadow:0 0 14px #c23c2a99}
+.card{border-radius:4px;border:1px solid #2b2620;border-top:2px solid #8a6d35;background:linear-gradient(180deg,#171a20,#0f1217);box-shadow:0 6px 20px #0008}
+h2{display:flex;align-items:center;gap:10px}h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#8a6d35,transparent)}
+.btn{border-radius:3px;background:linear-gradient(180deg,#252b34,#171b22);border-color:#3a4350;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
+.btn:hover{border-color:var(--g);color:#fff}.btn.on{background:linear-gradient(180deg,#d9482f,#8c2415);box-shadow:0 0 10px #c23c2a88}
+.btn.my.on{background:linear-gradient(180deg,#6fbf45,#2f6a1c);box-shadow:0 0 10px #5fa83c88}
+.ic{border-radius:3px;border-width:1px}.ic::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--c)}
+.h{transition:.15s}.h:hover{background:none;transform:translateY(-2px) scale(1.06);filter:brightness(1.2)}.h:hover .ic{box-shadow:0 0 12px var(--c)}
+.team h2.my~.slots .slot.f{border-color:#2f6a1c;box-shadow:inset 0 -3px 0 var(--ok)}
+.team h2.en~.slots .slot.f{border-color:#7c1e12;box-shadow:inset 0 -3px 0 var(--r)}
+.bar{height:40px;border-radius:3px;box-shadow:0 0 18px #0009;font-size:22px}
+.bar .a{box-shadow:inset 0 0 14px #9fe07a55}.bar .e{box-shadow:inset 0 0 14px #ff7a6a55}
+select{background:#0d1015;color:var(--g);border:1px solid #5a4620;border-radius:3px;font:700 12px Rajdhani,sans-serif;margin-top:4px;padding:1px 2px}
+input{border-radius:3px;background:#0d1015}
+.it{border-radius:3px;background:linear-gradient(90deg,#1d2129,#14181e)}
+.sec{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin:8px 0 2px;font:700 14px Cinzel,serif;letter-spacing:2px;color:var(--c);text-transform:uppercase}.sec::before{content:"";width:9px;height:9px;background:var(--c);transform:rotate(45deg)}.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--c),transparent)}.sec span{color:var(--m);font:600 12px Rajdhani,sans-serif}
+
+header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+@media(max-width:760px){header{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.steam{display:inline-block;text-decoration:none;color:#fff;padding:10px 24px;border-radius:3px;border:1px solid #66c0f4;background:linear-gradient(180deg,#2a75b0,#143b57);font:700 16px Rajdhani,sans-serif;text-transform:uppercase;letter-spacing:1px;box-shadow:0 0 16px #1b9fff55;transition:.15s}
+.steam:hover{filter:brightness(1.25);transform:translateY(-1px)}
+body::before{content:"";position:fixed;inset:-14px;z-index:-1;filter:blur(3px);background:linear-gradient(rgba(7,9,12,.25),rgba(7,9,12,.55)),url("bg.jpg") center/cover no-repeat,url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSI0OCUiIHI9IjcwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNGEzNTEyIi8+PHN0b3Agb2Zmc2V0PSIuNDUiIHN0b3AtY29sb3I9IiMxYTE0MTAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwNTA3MGEiLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0iZ2wiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZDk4YSIgc3RvcC1vcGFjaXR5PSIuNzUiLz48c3RvcCBvZmZzZXQ9Ii41IiBzdG9wLWNvbG9yPSIjZDhhMjNhIiBzdG9wLW9wYWNpdHk9Ii4yMiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q4YTIzYSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdkIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZlOWE4Ii8+PHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iI2Q5YTQ0MSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzdhNGYxNCIvPjwvbGluZWFyR3JhZGllbnQ+PHBvbHlnb24gaWQ9InJheSIgcG9pbnRzPSIwLDAgLTE0LC03MDAgMTQsLTcwMCIvPjwvZGVmcz48cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjYmcpIi8+PGNpcmNsZSBjeD0iODAwIiBjeT0iNDUwIiByPSI1MjAiIGZpbGw9InVybCgjZ2wpIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODAwIDQ1MCkiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9Ii4xIj48dXNlIGhyZWY9IiNyYXkiIHRyYW5zZm9ybT0icm90YXRlKDApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCkiLz48dXNlIGhyZWY9IiNyYXkiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPjx1c2UgaHJlZj0iI3JheSIgdHJhbnNmb3JtPSJyb3RhdGUoOTApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgxODApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgyMTApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgyNDApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgzMDApIi8+PHVzZSBocmVmPSIjcmF5IiB0cmFuc2Zvcm09InJvdGF0ZSgzMzApIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgwMCA0NTApIj48Y2lyY2xlIHI9IjI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dkKSIgc3Ryb2tlLXdpZHRoPSIxNiIvPjxjaXJjbGUgcj0iMjI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmU5YTgiIHN0cm9rZS1vcGFjaXR5PSIuNSIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTAtMTkwQzEyMC0xOTAgMTcwLTEzNSAxNzAtNDVDMTcwIDkwIDkwIDE2NSAwIDIyNUMtOTAgMTY1LTE3MCA5MC0xNzAtNDVDLTE3MC0xMzUtMTIwLTE5MCAwLTE5MFoiIGZpbGw9InVybCgjZ2QpIiBzdHJva2U9IiNmZmYxYzQiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0wLTE1MEM5NS0xNTAgMTM1LTEwOCAxMzUtMzZDMTM1IDcyIDcyIDEzMiAwIDE4MEMtNzIgMTMyLTEzNSA3Mi0xMzUtMzZDLTEzNS0xMDgtOTUtMTUwIDAtMTUwWiIgZmlsbD0iIzJhMWQwYiIgZmlsbC1vcGFjaXR5PSIuODUiIHN0cm9rZT0iI2Q5YTQ0MSIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTAtOTVMNjIgMEwwIDExNUwtNjIgMFoiIGZpbGw9InVybCgjZ2QpIi8+PGNpcmNsZSByPSIyMiIgZmlsbD0iI2ZmZjFjNCIvPjwvZz48Y2lyY2xlIGN4PSI3MDMiIGN5PSIxODQiIHI9IjIuNyIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC4yOCIvPjxjaXJjbGUgY3g9IjExMzciIGN5PSIxMjYiIHI9IjIuNiIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC4yOCIvPjxjaXJjbGUgY3g9IjEwNzkiIGN5PSIyNDkiIHI9IjEuNiIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC40OSIvPjxjaXJjbGUgY3g9IjE4MyIgY3k9IjI3NiIgcj0iMS44IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ4Ii8+PGNpcmNsZSBjeD0iMTE5OCIgY3k9IjE1NiIgcj0iNC4zIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjYwIi8+PGNpcmNsZSBjeD0iMTIzMyIgY3k9IjkzIiByPSIzLjIiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNDciLz48Y2lyY2xlIGN4PSI0OTIiIGN5PSI3NyIgcj0iMy4yIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjMyIi8+PGNpcmNsZSBjeD0iODk4IiBjeT0iMTc3IiByPSIzLjEiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNTYiLz48Y2lyY2xlIGN4PSIxMTg3IiBjeT0iODY1IiByPSIzLjUiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMzEiLz48Y2lyY2xlIGN4PSIxMjA5IiBjeT0iNjg0IiByPSIyLjEiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMzAiLz48Y2lyY2xlIGN4PSIxNDk4IiBjeT0iOTQiIHI9IjMuMiIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC41OSIvPjxjaXJjbGUgY3g9IjEwNTYiIGN5PSI3MjYiIHI9IjMuMSIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC42OCIvPjxjaXJjbGUgY3g9Ijk5MyIgY3k9IjYyOSIgcj0iNC4zIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ1Ii8+PGNpcmNsZSBjeD0iNTQ4IiBjeT0iODQzIiByPSIyLjAiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNjgiLz48Y2lyY2xlIGN4PSIyMDciIGN5PSI2MTgiIHI9IjIuNCIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC41MiIvPjxjaXJjbGUgY3g9Ijc0MyIgY3k9Ijc3NiIgcj0iMi44IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjU4Ii8+PGNpcmNsZSBjeD0iMTg5IiBjeT0iMTUwIiByPSIzLjAiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMzQiLz48Y2lyY2xlIGN4PSI3NDAiIGN5PSIxODUiIHI9IjQuMyIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC40OCIvPjxjaXJjbGUgY3g9IjE0MDgiIGN5PSIxMDkiIHI9IjMuOCIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC41NyIvPjxjaXJjbGUgY3g9IjY4MiIgY3k9IjM3OCIgcj0iMy42IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjU4Ii8+PGNpcmNsZSBjeD0iMTIyNyIgY3k9Ijg0NiIgcj0iMi45IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjcxIi8+PGNpcmNsZSBjeD0iNTkyIiBjeT0iNTE1IiByPSIzLjYiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMjkiLz48Y2lyY2xlIGN4PSIxNTM3IiBjeT0iNzQ4IiByPSIyLjQiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNTciLz48Y2lyY2xlIGN4PSIxNDM1IiBjeT0iNDg2IiByPSIyLjQiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNDYiLz48Y2lyY2xlIGN4PSIxNDA5IiBjeT0iMzg1IiByPSIxLjYiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNTAiLz48Y2lyY2xlIGN4PSIzODQiIGN5PSI2NTUiIHI9IjEuOSIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC4yOCIvPjxjaXJjbGUgY3g9IjYyOCIgY3k9IjE2MiIgcj0iMy43IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ3Ii8+PGNpcmNsZSBjeD0iMTA1NiIgY3k9IjExMiIgcj0iMi4wIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ3Ii8+PGNpcmNsZSBjeD0iNjA5IiBjeT0iMTcwIiByPSI0LjAiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNzMiLz48Y2lyY2xlIGN4PSI2MTAiIGN5PSI3NTMiIHI9IjIuNyIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC40NSIvPjxjaXJjbGUgY3g9IjgxOSIgY3k9IjI2NiIgcj0iMi4wIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjM1Ii8+PGNpcmNsZSBjeD0iNTE1IiBjeT0iNzA0IiByPSIyLjIiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNTIiLz48Y2lyY2xlIGN4PSIxMjQ2IiBjeT0iMjE2IiByPSIyLjMiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMjUiLz48Y2lyY2xlIGN4PSI4OTgiIGN5PSI1NzciIHI9IjIuNiIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC41NiIvPjxjaXJjbGUgY3g9IjI5NyIgY3k9IjczNyIgcj0iNC4xIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjc3Ii8+PGNpcmNsZSBjeD0iMTM4MSIgY3k9IjcyMiIgcj0iMy43IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjUwIi8+PGNpcmNsZSBjeD0iMTQzMyIgY3k9Ijg0NyIgcj0iMy4yIiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ3Ii8+PGNpcmNsZSBjeD0iODQ3IiBjeT0iMTM2IiByPSIyLjkiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNDciLz48Y2lyY2xlIGN4PSI0MzAiIGN5PSI5OCIgcj0iNC41IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQ5Ii8+PGNpcmNsZSBjeD0iMjY1IiBjeT0iMzc4IiByPSIzLjMiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuMzEiLz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iMTg0IiByPSIzLjEiIGZpbGw9IiNmZmQ5OGEiIG9wYWNpdHk9IjAuNzciLz48Y2lyY2xlIGN4PSIxMjk2IiBjeT0iNTYiIHI9IjEuNyIgZmlsbD0iI2ZmZDk4YSIgb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjgxMCIgY3k9IjE4MiIgcj0iMy40IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjc4Ii8+PGNpcmNsZSBjeD0iMTI3MyIgY3k9IjQwMiIgcj0iMi45IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjMxIi8+PGNpcmNsZSBjeD0iMTAzOSIgY3k9IjUwNyIgcj0iMi45IiBmaWxsPSIjZmZkOThhIiBvcGFjaXR5PSIwLjQyIi8+PC9zdmc+") center/cover no-repeat}
+.card{background:linear-gradient(180deg,rgba(23,26,32,.78),rgba(15,18,23,.84));backdrop-filter:blur(4px)}
+.pl{font:700 11px Rajdhani,sans-serif;color:var(--g);text-align:center;text-transform:uppercase;min-height:28px;line-height:1.1;display:flex;align-items:flex-end;justify-content:center;margin-bottom:3px}
+.slot.tg{border-color:var(--g);box-shadow:0 0 10px #d8b26a88;color:var(--g)}
+select{max-width:100%;font-size:11px}select.dup{border-color:var(--r);color:#ff8a78}
+.logo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;text-shadow:none}
+.logo .lt{font:900 32px "Cinzel Decorative",Cinzel,Georgia,serif;letter-spacing:1px;background:linear-gradient(180deg,#fff3cf,#e2b25a 55%,#8a5a14);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px #d9a44166)}
+.logo .by{font:600 13px Rajdhani,sans-serif;letter-spacing:1.5px;color:#b8a272}
+header{background:linear-gradient(90deg,rgba(58,42,16,.75),rgba(20,24,30,.8) 60%,rgba(13,16,21,.8));box-shadow:0 4px 24px #d9a44133;border-bottom-color:#8a6d35}
+
+.steam{position:relative;display:inline-flex;align-items:center;gap:8px;padding:11px 28px;border-radius:14px;color:#eafff4;text-decoration:none;font:700 16px Rajdhani,sans-serif;letter-spacing:1.4px;text-transform:uppercase;overflow:hidden;border:1.5px solid transparent;background:linear-gradient(135deg,#0f3d30,#06231b) padding-box,linear-gradient(135deg,#34d399,#fde68a 50%,#34d399) border-box;box-shadow:0 6px 22px rgba(16,185,129,.28),inset 0 1px 0 rgba(255,255,255,.2);transition:transform .25s,box-shadow .25s;animation:steamGlow 3.2s ease-in-out infinite}
+.steam::after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg);transition:left .7s}
+.steam:hover{filter:none;transform:translateY(-2px);box-shadow:0 10px 30px rgba(52,211,153,.5),inset 0 1px 0 rgba(255,255,255,.3)}
+.steam:hover::after{left:130%}
+.steam:active{transform:translateY(0) scale(.98)}
+@keyframes steamGlow{0%,100%{box-shadow:0 6px 22px rgba(16,185,129,.22),inset 0 1px 0 rgba(255,255,255,.2)}50%{box-shadow:0 6px 30px rgba(52,211,153,.45),inset 0 1px 0 rgba(255,255,255,.2)}}
+@media(prefers-reduced-motion:reduce){.steam{animation:none}.steam::after{transition:none}}
+
+.logo{animation:logoGlow 4.5s ease-in-out infinite}
+.logo .lt{filter:none;background:linear-gradient(100deg,#c98f35 0%,#e2b25a 38%,#fff8e0 50%,#e2b25a 62%,#c98f35 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoIn 1.3s cubic-bezier(.2,.8,.2,1) both,logoShine 7s ease-in-out 1.4s infinite}
+.logo .by{animation:byIn 1s ease 1s both}
+@keyframes logoIn{from{opacity:0;letter-spacing:9px;transform:translateY(-10px);filter:blur(7px)}to{opacity:1;letter-spacing:1px;transform:none;filter:blur(0)}}
+@keyframes logoShine{0%,15%{background-position:150% 0}70%,100%{background-position:-50% 0}}
+@keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 7px rgba(217,164,65,.3))}50%{filter:drop-shadow(0 0 18px rgba(255,217,138,.6))}}
+@keyframes byIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.logo,.logo .lt,.logo .by{animation:none}}
+
+.tm-my{--tc:#4ade80;--tb:rgba(74,222,128,.4);--tt:rgba(74,222,128,.09);--tg:rgba(74,222,128,.2)}
+.tm-en{--tc:#f87171;--tb:rgba(248,113,113,.4);--tt:rgba(248,113,113,.09);--tg:rgba(248,113,113,.2)}
+.tm-my,.tm-en{position:relative;border:1px solid var(--tb);border-top:1px solid var(--tb);border-radius:12px;padding:16px 16px 14px;background:linear-gradient(160deg,var(--tt),rgba(12,15,20,.86) 55%),rgba(12,15,20,.8);box-shadow:0 0 30px var(--tg),inset 0 0 36px var(--tt);transition:box-shadow .3s}
+.tm-my:hover,.tm-en:hover{box-shadow:0 0 44px var(--tg),inset 0 0 40px var(--tt)}
+.tm-my::before,.tm-en::before,.tm-my::after,.tm-en::after{content:"";position:absolute;width:26px;height:26px;pointer-events:none;filter:drop-shadow(0 0 6px var(--tc))}
+.tm-my::before,.tm-en::before{top:-1px;left:-1px;border-top:3px solid var(--tc);border-left:3px solid var(--tc);border-top-left-radius:12px}
+.tm-my::after,.tm-en::after{bottom:-1px;right:-1px;border-bottom:3px solid var(--tc);border-right:3px solid var(--tc);border-bottom-right-radius:12px}
+.tm-my h2.my,.tm-en h2.en{font:700 19px Philosopher,Georgia,serif;letter-spacing:3px;color:var(--tc);text-shadow:0 0 14px var(--tg)}
+.tm-my h2.my::before,.tm-en h2.en::before{content:"";width:9px;height:9px;transform:rotate(45deg);background:var(--tc);box-shadow:0 0 10px var(--tc)}
+.tm-my h2.my::after,.tm-en h2.en::after{background:linear-gradient(90deg,var(--tc),transparent)}
+.tm-my .slot,.tm-en .slot{border-radius:9px;border-color:var(--tb);background:rgba(255,255,255,.025);font-family:"Exo 2",Rajdhani,sans-serif;font-weight:600}
+.tm-my .slot.f,.tm-en .slot.f{background:linear-gradient(180deg,var(--tt),rgba(255,255,255,.02));border-color:var(--tc)!important;box-shadow:0 0 12px var(--tg),inset 0 -3px 0 var(--tc)!important}
+.tm-my .slot:not(.f):hover,.tm-en .slot:not(.f):hover{border-color:var(--tc);color:var(--tc)}
+.tm-my .slot span,.tm-en .slot span{font-size:11px;margin-top:3px}
+.tm-my .pl,.tm-en .pl{font:600 11px "Exo 2",Rajdhani,sans-serif;letter-spacing:.8px;color:var(--tc)}
+.tm-my .chip,.tm-en .chip{font-family:"Exo 2",Rajdhani,sans-serif;font-weight:500;border-color:var(--tb);background:var(--tt);color:#d5dde3}
+
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes spinA{to{--a:360deg}}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes barShine{from{background-position:150% 0}to{background-position:-50% 0}}
+@keyframes hitPulse{0%,100%{box-shadow:0 0 0 rgba(95,168,60,0)}50%{box-shadow:0 0 12px rgba(95,168,60,.6)}}
+.card{animation:cardIn .7s cubic-bezier(.2,.8,.2,1) both}
+section>.card:nth-child(2){animation-delay:.08s}section>.card:nth-child(3){animation-delay:.16s}section>.card:nth-child(4){animation-delay:.24s}section>.card:nth-child(5){animation-delay:.32s}section>.card:nth-child(6){animation-delay:.4s}.card:nth-child(6){--dl:-1s}
+.card:nth-child(3){--dl:-2s}.card:nth-child(4){--dl:-4s}.card:nth-child(5){--dl:-6s}
+.card:not(.tm-my):not(.tm-en){position:relative;border:1px solid rgba(217,164,65,.22);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 0 30px rgba(217,164,65,.04)}
+.card:not(.tm-my):not(.tm-en)::before{content:"";position:absolute;inset:-1px;border-radius:12px;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--a),transparent 0 62%,#ffe9a8 80%,#d9a441 86%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spinA 8s linear infinite;animation-delay:var(--dl,0s)}
+.card:not(.tm-my):not(.tm-en) h2{font:700 17px Philosopher,Georgia,serif;letter-spacing:3px;color:#e2b25a;text-shadow:0 0 12px rgba(217,164,65,.35)}
+.card:not(.tm-my):not(.tm-en) h2::before{content:"";width:8px;height:8px;transform:rotate(45deg);background:#e2b25a;box-shadow:0 0 10px #d9a441}
+.grid{padding:8px;border:1px solid rgba(217,164,65,.16);border-radius:10px;background:rgba(0,0,0,.2);scrollbar-width:thin;scrollbar-color:#8a6d35 transparent}
+input{border-radius:10px;border-color:rgba(217,164,65,.3);transition:box-shadow .2s,border-color .2s}
+input:focus{border-color:#d9a441;box-shadow:0 0 0 3px rgba(217,164,65,.2)}
+.bar{position:relative;border-radius:10px;border:1px solid rgba(217,164,65,.4)}
+.bar::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);background-size:250% 100%;animation:barShine 5s linear infinite}
+.it{border-radius:10px;border:1px solid rgba(217,164,65,.18);border-left:3px solid #d9a441;background:linear-gradient(90deg,rgba(217,164,65,.09),rgba(20,24,30,.7));transition:transform .2s,box-shadow .2s}
+.it:hover{transform:translateX(3px);box-shadow:0 0 18px rgba(217,164,65,.18)}
+.tag{border-radius:8px;transition:transform .15s}.tag:hover{transform:translateY(-1px)}
+.tag.hit{animation:hitPulse 2.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.card,.card::before,.bar::after,.tag.hit{animation:none}}
+</style></head><body>
+<header><div><div class="logo"><span class="lt">Dota 2 Item Pick</span><span class="by">by GAPYXA</span></div><small>выбери пики — получи контр-предметы и шансы на победу</small></div><a id="steam" class="steam" target="_blank" rel="noopener">💳 Пополнение Steam</a><div></div></header>
+<main>
+<section class="card">
+<h2>Герои</h2>
+<input id="q" placeholder="Быстрый поиск героя… (Enter — добавить первого)" autocomplete="off">
+<div class="row" id="teamsw">
+<button class="btn my on" data-t="my">＋ В мою команду</button><button class="btn" data-t="en">＋ В команду врагов</button></div>
+<div class="row" id="attrs"></div>
+<div class="grid" id="grid"></div>
+</section>
+<section>
+<div class="card team tm-my"><h2 class="my">Моя команда</h2><div class="slots" id="sm"></div><div class="chips" id="cm"></div></div>
+<div class="card team tm-en"><h2 class="en">Враги</h2><div class="slots" id="se"></div><div class="chips" id="ce"></div></div>
+<div class="card team"><h2>Шанс победы</h2><div class="bar"><div class="a" id="ba" style="width:50%">50%</div><div class="e" id="be" style="width:50%">50%</div></div>
+<div class="sub"><span id="pa">Состав: —</span><span id="pe">Состав: —</span></div></div>
+<div class="card team"><h2>Что собирать</h2><div id="items"></div></div>
+<div class="card team"><h2>Популярные сборки (OpenDota)</h2><div class="why" style="margin-bottom:8px">Зелёным выделены предметы, которые подходят против выбранных врагов.</div><div id="builds"></div></div>
+<div class="card"><h2>Нейросеть</h2><div class="ai">
+<button class="btn my" id="win">✔ Моя команда победила</button><button class="btn" id="lose">✖ Проиграла</button><button class="btn" id="learn">🌐 Обучить на реальных матчах</button><button class="btn" id="rst">Сброс</button>
+<p id="ainfo"></p></div></section>
+</main>
+<script>
+const D="Axe:S:idt;Tidehunter:S:idt;Sven:S:cdy;Pudge:S:dnm;Earthshaker:S:idm;Legion Commander:S:idcy;Centaur Warrunner:S:it;Underlord:S:tpm;Doom:S:dm;Dragon Knight:S:tcpy;Huskar:S:cy;Bristleback:S:tcy;Wraith King:S:ctdy;Lifestealer:S:cehy;Slardar:S:idcy;Mars:S:idt;Omniknight:S:sht;Spirit Breaker:S:ide;Tiny:S:ncm;Kunkka:S:idm;Abaddon:S:sht;Beastmaster:S:idp;Anti-Mage:A:cey;Juggernaut:A:cehy;Phantom Assassin:A:cay;Faceless Void:A:cidy;Luna:A:cpy;Medusa:A:cty;Terrorblade:A:clpy;Sniper:A:cy;Drow Ranger:A:cy;Morphling:A:cey;Riki:A:vcy;Slark:A:cehy;Spectre:A:cty;Bounty Hunter:A:vsy;Ursa:A:cdy;Troll Warlord:A:cy;Naga Siren:A:cldp;Phantom Lancer:A:clay;Weaver:A:cev;Clinkz:A:vcy;Gyrocopter:A:cm;Templar Assassin:A:cy;Monkey King:A:ciy;Crystal Maiden:I:sdm;Lion:I:sdnm;Lina:I:nmc;Zeus:I:nm;Invoker:I:nmce;Rubick:I:sd;Shadow Shaman:I:sdp;Witch Doctor:I:shdm;Warlock:I:sdhm;Skywrath Mage:I:snm;Ogre Magi:I:sdt;Oracle:I:sh;Dazzle:I:sh;Enigma:I:idp;Tinker:I:npe;Storm Spirit:I:nme;Puck:I:dne;Death Prophet:I:pm;Necrophos:I:nhtm;Silencer:I:sdm;Leshrac:I:pm;Ancient Apparition:I:sm;Lich:I:sm;Queen of Pain:I:nme;Void Spirit:I:nem;Pugna:I:pm;Disruptor:I:sd;Windranger:U:cey;Bane:U:sd;Venomancer:U:spm;Dark Willow:U:sdm;Snapfire:U:sdm;Pangolier:U:cide;Muerta:U:cm;Hoodwink:U:sy;Ember Spirit:U:cey;Dawnbreaker:U:sht;Primal Beast:U:idt;Marci:U:cide;Io:U:sh;Nyx Assassin:U:vdi;Batrider:U:idm;Viper:U:tm;Alchemist:S:cdy;Chaos Knight:S:cidy;Clockwerk:S:idt;Elder Titan:S:idm;Earth Spirit:S:idn;Sand King:U:idnm;Timbersaw:S:tn;Tusk:S:idy;Treant Protector:S:sht;Lycan:U:cpy;Magnus:U:idn;Brewmaster:S:idt;Bloodseeker:A:cy;Meepo:A:cdy;Arc Warden:A:cm;Broodmother:U:cpy;Lone Druid:U:cpy;Razor:A:cty;Visage:U:nm;Mirana:A:cde;Shadow Demon:I:sdm;Dark Seer:I:id;Nature’s Prophet:I:pm;Outworld Destroyer:I:nmc;Shadow Fiend:A:cnm;Vengeful Spirit:U:sd;Jakiro:I:sdpm;Keeper of the Light:I:shm;Chen:I:shp;Enchantress:I:shp;Grimstroke:I:sdm;Techies:I:dnm;Winter Wyvern:I:shm;Undying:S:sdt;Phoenix:U:idm".split(";").map(s=>{const[n,a,t]=s.split(":");return{n,a,t}});
+const AC={S:"#e0492f",A:"#4fbf5a",I:"#3fa6e8",U:"#c7a24a"},AN={S:"STR",A:"AGI",I:"INT",U:"UNI"};
+// правила: [тег врага, минимум, предметы, причина, для роли (c — кор, s — саппорт, a — все)]
+const R=[["v",1,["Dust of Appearance","Sentry Ward","Gem of True Sight"],"Есть невидимые герои","s"],
+["l",1,["Radiance","Shiva’s Guard","Mjollnir"],"Иллюзии — нужен урон по области","c"],
+["a",1,["Monkey King Bar","Bloodthorn"],"Уклонение — пробивающий урон","c"],
+["m",2,["Pipe of Insight","Hood of Defiance","Glimmer Cape"],"Много магического урона","s"],
+["m",3,["Mage Slayer","Black King Bar"],"Магический урон в упор","c"],
+["y",3,["Crimson Guard","Ghost Scepter","Heaven’s Halberd"],"Много физического урона","a"],
+["d",3,["Black King Bar","Linken’s Sphere","Lotus Orb"],"Много контроля","a"],
+["e",2,["Orchid Malevolence","Scythe of Vyse","Gleipnir"],"Враги убегают и прыгают","a"],
+["h",2,["Spirit Vessel","Eye of Skadi"],"Лечение и регенерация","a"],
+["i",3,["Aeon Disk","Force Staff"],"Сильные инициаторы","a"],
+["c",3,["Blade Mail","Heaven’s Halberd"],"Много кэрри у врага","a"]];
+const PR=[["d","c",.3],["t","y",.25],["m","t",.25],["e","d",.2]];
+const $=s=>document.querySelector(s);
+let my=[],en=[],act="my",flt="",q="";
+let net={w:{},m:{},n:0};try{net=JSON.parse(localStorage.getItem("d2net"))||net}catch(e){}
+const save=()=>{try{localStorage.setItem("d2net",JSON.stringify(net))}catch(e){}};
+const hue=n=>[...n].reduce((a,c)=>a*31+c.charCodeAt(0),7)%360;
+const ini=n=>{const w=n.replace("-"," ").split(" ");return (w.length>1?w[0][0]+w[1][0]:n.slice(0,2)).toUpperCase()};
+const icon=i=>{const h=D[i],x=hue(h.n);return `<span class="ic" style="background:linear-gradient(135deg,hsl(${x},55%,38%),hsl(${x},60%,14%));border-color:${AC[h.a]};--c:${AC[h.a]}">${ini(h.n)}<img src="${IMG[0].replace("%",slug(h.n))}" data-s="${slug(h.n)}" alt="" referrerpolicy="no-referrer"></span>`};
+const cnt=T=>{const o={};T.forEach(i=>[...D[i].t].forEach(c=>o[c]=(o[c]||0)+1));return o};
+const m=Math.min;
+function comp(T){const c=cnt(T),g=k=>c[k]||0;let s=m(g("c"),2)*2+m(g("d"),3)*1.5+m(g("i"),2)*1.5+m(g("s"),2)*1.2+m(g("e"),2)*.8+m(g("n"),2)+m(g("t"),2)+m(g("p"),1)*.7;if(T.length>=4){if(!g("c"))s-=3;if(!g("d"))s-=2}return s}
+function match(A,B){let s=0;A.forEach(a=>B.forEach(b=>PR.forEach(r=>{if(D[a].t.includes(r[0])&&D[b].t.includes(r[1]))s+=r[2]})));return s}
+const key=(a,e)=>a<e?a+"|"+e:e+"|"+a,sg=(a,e)=>a<e?1:-1;
+function ns(A,B){let s=0;A.forEach(a=>s+=net.w[a]||0);B.forEach(b=>s-=net.w[b]||0);A.forEach(a=>B.forEach(b=>s+=(net.m[key(a,b)]||0)*sg(a,b)));return s}
+const logit=(A,B)=>(comp(A)-comp(B))*.22+(match(A,B)-match(B,A))*.3+ns(A,B)+nnOut(A,B);
+const sig=x=>1/(1+Math.exp(-x));
+function train(y){if(!my.length||!en.length)return;const g=y-sig(logit(my,en)),lr=.3;nnStep(my,en,g,.05);
+my.forEach(a=>net.w[a]=(net.w[a]||0)+lr*g);en.forEach(b=>net.w[b]=(net.w[b]||0)-lr*g);
+my.forEach(a=>en.forEach(b=>net.m[key(a,b)]=(net.m[key(a,b)]||0)+lr*g*sg(a,b)));net.n++;save();draw()}
+function pick(i){const T=act=="my"?my:en;if(T.length>=5||my.includes(i)||en.includes(i))return;T.push(i);const tm=act,used=T.filter(j=>j!=i).map(P);let k=tgt[tm];if(k==null||used.includes(k+1))k=[0,1,2,3,4].find(x=>!used.includes(x+1));pos[i]=k+1;tgt[tm]=null;draw()}
+const LB={c:"Кэрри",d:"Контроль",i:"Инициация",s:"Саппорт",e:"Побег",n:"Нюкеры",t:"Танки",p:"Пуш"};
+function slots(T,id,cid){$(id).innerHTML=PL.map((l,k)=>{const j=T.find(i=>P(i)==k+1),tm=id=="#sm"?"my":"en";
+return `<div class="sc"><div class="pl">${k+1} · ${l}</div>`+(j!=null?`<div class="slot f" data-i="${j}" title="Убрать">${icon(j)}<span>${nm(D[j].n)}</span></div>`:`<div class="slot${tgt[tm]==k?" tg":""}" data-k="${k}" data-tm="${tm}">＋</div>`)+`</div>`}).join("");
+const c=cnt(T);$(cid).innerHTML=Object.keys(LB).filter(k=>c[k]).map(k=>`<span class="chip">${LB[k]} ${c[k]}</span>`).join("")}
+function items(){const c=cnt(en);const act2=R.filter(r=>(c[r[0]]||0)>=r[1]);
+if(!en.length){$("#items").innerHTML='<div class="why">Выберите героев врага — подберу предметы против них.</div>';return}
+if(!act2.length){$("#items").innerHTML='<div class="why">Явных слабостей у врагов нет — собирайте стандартный билд.</div>';return}
+const roles=my.length?my.map(i=>({i,r:P(i)>=4?"s":"c"})):[{i:null,r:"a"}];
+$("#items").innerHTML=roles.map(o=>{const rs=act2.filter(r=>r[4]=="a"||r[4]==o.r||o.r=="a");
+return `<div class="it"><b>${o.i!=null?nm(D[o.i].n)+" ("+PL[P(o.i)-1]+")":"Общие советы"}</b><br>${rs.map(r=>r[2].map(x=>`<span class="tag" title="${r[3]}">${x}</span>`).join("")).join("")||'<span class="why">Нет особых советов</span>'}
+<div class="why">${rs.map(r=>r[3]).join(" · ")}</div></div>`}).join("")}
+function draw(){
+$("#grid").innerHTML=["S","A","I","U"].map(a=>{const L=D.map((h,i)=>({h,i})).filter(({h})=>h.a==a&&(!flt||flt==a)&&hq(h)).sort((x,y)=>x.h.n.localeCompare(y.h.n));
+return L.length?`<div class="sec" style="--c:${AC[a]}">${AF[a]} <span>${L.length}</span></div>`+L.map(({h,i})=>`<button class="h${my.includes(i)||en.includes(i)?" used":""}" data-i="${i}">${icon(i)}<b>${nm(h.n)}</b></button>`).join(""):""}).join("");
+slots(my,"#sm","#cm");slots(en,"#se","#ce");items();builds();
+let a=50;if(my.length&&en.length)a=Math.round(sig(logit(my,en))*100);
+$("#ba").style.width=a+"%";$("#ba").textContent=a+"%";$("#be").style.width=(100-a)+"%";$("#be").textContent=(100-a)+"%";
+const mx=x=>x.length?Math.max(0,Math.min(100,Math.round(comp(x)/20*100)))+"/100":"—";
+$("#pa").textContent="Состав: "+mx(my);$("#pe").textContent="Состав: "+mx(en);
+$("#ainfo").textContent=`Матчей в памяти: ${net.n}. После игры нажмите итог — нейросеть (эмбеддинги героев + скрытый слой) дообучится. Данные хранятся в вашем браузере.`}
+$("#attrs").innerHTML=[["","Все"],...Object.entries(AN)].map(([k,v])=>`<button class="btn${k?"":" on"}" data-a="${k}">${v}</button>`).join("");
+document.addEventListener("click",e=>{if(e.target.closest("select"))return;const b=e.target.closest("button,.slot");if(!b)return;
+if(b.dataset.a!==undefined){flt=b.dataset.a;document.querySelectorAll("#attrs .btn").forEach(x=>x.classList.toggle("on",x==b));draw()}
+else if(b.dataset.t){act=b.dataset.t;document.querySelectorAll("#teamsw .btn").forEach(x=>x.classList.toggle("on",x==b))}
+else if(b.dataset.k!==undefined){act=b.dataset.tm;tgt[act]=+b.dataset.k;document.querySelectorAll("#teamsw .btn").forEach(x=>x.classList.toggle("on",x.dataset.t==act));draw()}
+else if(b.classList.contains("h"))pick(+b.dataset.i);
+else if(b.classList.contains("slot")&&b.dataset.i){const i=+b.dataset.i;my=my.filter(x=>x!=i);en=en.filter(x=>x!=i);draw()}});
+$("#q").addEventListener("input",e=>{q=e.target.value.toLowerCase();draw()});
+$("#q").addEventListener("keydown",e=>{if(e.key=="Enter"){const i=D.findIndex((h,k)=>hq(h)&&!my.includes(k)&&!en.includes(k));if(i>=0){pick(i);e.target.value="";q="";draw()}}});
+const IMG=["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/%.png","https://cdn.fastly.steamstatic.com/apps/dota2/images/dota_react/heroes/%.png","https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/%.png","https://cdn.dota2.com/apps/dota2/images/dota_react/heroes/%.png","https://cdn.dota2.com/apps/dota2/images/heroes/%_lg.png","https://steamcdn-a.akamaihd.net/apps/dota2/images/dota_react/heroes/%.png","https://api.opendota.com/apps/dota2/images/dota_react/heroes/%.png"];
+const EX={"Wraith King":"skeleton_king","Lifestealer":"life_stealer","Necrophos":"necrolyte","Windranger":"windrunner","Underlord":"abyssal_underlord","Centaur Warrunner":"centaur","Doom":"doom_bringer","Io":"wisp","Queen of Pain":"queenofpain","Zeus":"zuus","Clockwerk":"rattletrap","Nature’s Prophet":"furion","Outworld Destroyer":"obsidian_destroyer","Shadow Fiend":"nevermore","Vengeful Spirit":"vengefulspirit","Magnus":"magnataur","Timbersaw":"shredder","Treant Protector":"treant","Sand King":"sandking"};
+const slug=n=>EX[n]||n.toLowerCase().replace(/[^a-z ]/g,"").replace(/ /g,"_");
+document.addEventListener("error",e=>{const t=e.target;if(t.tagName!="IMG")return;const n=(+t.dataset.n||0)+1;if(n<IMG.length){t.dataset.n=n;t.src=IMG[n].replace("%",t.dataset.s)}else{t.remove();BAD++}},true);
+function fit(A,B,y,lr){const r=Math.max(-1,Math.min(1,y-sig(logit(A,B)))),g=r*lr,c=v=>Math.max(-3,Math.min(3,v));
+nnStep(A,B,r,lr/2);A.forEach(a=>net.w[a]=c((net.w[a]||0)+g));B.forEach(b=>net.w[b]=c((net.w[b]||0)-g));
+A.forEach(a=>B.forEach(b=>{const k=key(a,b);net.m[k]=c((net.m[k]||0)+g*sg(a,b))}))}
+const norm=s=>s.toLowerCase().replace(/[^a-z]/g,""),sleep=t=>new Promise(r=>setTimeout(r,t));
+$("#learn").onclick=async()=>{const b=$("#learn"),st=$("#ainfo");b.disabled=true;net.s=net.s||{};
+try{const hs=await(await fetch("https://api.opendota.com/api/heroes")).json();
+const ix={},id2={};D.forEach((h,i)=>ix[norm(h.n)]=i);hs.forEach(h=>{const i=ix[norm(h.localized_name)];if(i!=null)id2[h.id]=i});
+let last=null,all=[];
+for(let p=0;p<5;p++){st.textContent=`Загружаю матчи OpenDota… страница ${p+1} из 5`;
+const r=await(await fetch("https://api.opendota.com/api/publicMatches"+(last?"?less_than_match_id="+last:""))).json();
+if(!r.length)break;last=Math.min(...r.map(x=>x.match_id));
+r.filter(x=>(x.game_mode==22||x.game_mode==2)&&!net.s[x.match_id]).forEach(x=>all.push(x));await sleep(1300)}
+const ms=all.map(x=>{net.s[x.match_id]=1;return{a:x.radiant_team.map?x.radiant_team:String(x.radiant_team).split(",").map(Number),b:String(x.dire_team).split(",").map(Number),y:x.radiant_win?1:0}}).map(x=>({a:x.a.map(k=>id2[k]).filter(k=>k!=null),b:x.b.map(k=>id2[k]).filter(k=>k!=null),y:x.y})).filter(x=>x.a.length&&x.b.length);
+for(let ep=0;ep<4;ep++)ms.forEach(x=>fit(x.a,x.b,x.y,.04));
+net.n+=ms.length;save();draw();st.textContent=`Готово: обучено на ${ms.length} новых реальных матчах. Всего в памяти: ${net.n}.`}
+catch(e){st.textContent="Не удалось загрузить данные OpenDota (лимит запросов или нет сети). Попробуйте позже."}
+b.disabled=false};
+function counterSet(){const c=cnt(en),o=new Set();R.forEach(r=>{if((c[r[0]]||0)>=r[1])r[2].forEach(x=>o.add(norm(x)))});return o}
+let OKI=0,BAD=0;document.addEventListener("load",e=>{if(e.target.tagName=="IMG")OKI++},true);
+setTimeout(()=>{if(!OKI&&BAD>3){const w=document.createElement("div");w.className="why";w.style.cssText="margin:6px 0;color:#e0a040";w.textContent="Иконки не загрузились с серверов Valve (возможно, блокировка провайдером или расширением браузера). Показаны плитки с инициалами.";$("#grid").before(w)}},6000);
+const RU=Object.fromEntries("Axe=Топор;Tidehunter=Тайдхантер;Sven=Свен;Pudge=Пудж;Earthshaker=Эртшейкер;Legion Commander=Легион Коммандер;Centaur Warrunner=Кентавр;Underlord=Андерлорд;Doom=Дум;Dragon Knight=Драгон Найт;Huskar=Хускар;Bristleback=Бристлбэк;Wraith King=Рейф Кинг;Lifestealer=Лайфстилер;Slardar=Слардар;Mars=Марс;Omniknight=Омникнайт;Spirit Breaker=Спирит Брейкер;Tiny=Тини;Kunkka=Кункка;Abaddon=Абаддон;Beastmaster=Бистмастер;Anti-Mage=Анти-Маг;Juggernaut=Джаггернаут;Phantom Assassin=Фантом Ассасин;Faceless Void=Фейслесс Войд;Luna=Луна;Medusa=Медуза;Terrorblade=Террорблейд;Sniper=Снайпер;Drow Ranger=Дроу Рейнджер;Morphling=Морфлинг;Riki=Рики;Slark=Сларк;Spectre=Спектра;Bounty Hunter=Баунти Хантер;Ursa=Урса;Troll Warlord=Тролль;Naga Siren=Нага Сирена;Phantom Lancer=Фантом Лансер;Weaver=Вивер;Clinkz=Клинкз;Gyrocopter=Гирокоптер;Templar Assassin=Темплар Ассасин;Monkey King=Манки Кинг;Crystal Maiden=Кристал Мейден;Lion=Лион;Lina=Лина;Zeus=Зевс;Invoker=Инвокер;Rubick=Рубик;Shadow Shaman=Шейдоу Шаман;Witch Doctor=Витч Доктор;Warlock=Варлок;Skywrath Mage=Скайрат Маг;Ogre Magi=Огр Маги;Oracle=Оракл;Dazzle=Дазл;Enigma=Энигма;Tinker=Тинкер;Storm Spirit=Шторм Спирит;Puck=Пак;Death Prophet=Дэт Профет;Necrophos=Некрофос;Silencer=Сайленсер;Leshrac=Лешрак;Ancient Apparition=Анциент Эппарейшн;Lich=Лич;Queen of Pain=Куин оф Пейн;Void Spirit=Войд Спирит;Pugna=Пугна;Disruptor=Дисраптор;Windranger=Виндранер;Bane=Бейн;Venomancer=Веномансер;Dark Willow=Дарк Виллоу;Snapfire=Снэпфайр;Pangolier=Панголиер;Muerta=Муэрта;Hoodwink=Худвинк;Ember Spirit=Эмбер Спирит;Dawnbreaker=Донбрейкер;Primal Beast=Праймал Бист;Marci=Марси;Io=Ио;Nyx Assassin=Никс Ассасин;Batrider=Бэтрайдер;Viper=Вайпер;Alchemist=Алхимик;Chaos Knight=Хаос Найт;Clockwerk=Клокверк;Elder Titan=Элдер Титан;Earth Spirit=Эрт Спирит;Sand King=Сэнд Кинг;Timbersaw=Тимберсо;Tusk=Туск;Treant Protector=Трент;Lycan=Ликан;Magnus=Магнус;Brewmaster=Брюмастер;Bloodseeker=Бладсикер;Meepo=Мипо;Arc Warden=Арк Вардер;Broodmother=Бруда;Lone Druid=Лон Друид;Razor=Рэйзор;Visage=Визаж;Mirana=Мирана;Shadow Demon=Шейдоу Демон;Dark Seer=Дарк Сир;Nature’s Prophet=Природный Пророк;Outworld Destroyer=Аутворлд Дестроер;Shadow Fiend=Шейдоу Фиенд;Vengeful Spirit=Венга;Jakiro=Джакиро;Keeper of the Light=Киппер;Chen=Чен;Enchantress=Энчантресс;Grimstroke=Гримстрок;Techies=Течис;Winter Wyvern=Винтер Вивэрн;Undying=Андаинг;Phoenix=Феникс".split(";").map(x=>x.split("=")));
+const nm=n=>n,hq=h=>(h.n+" "+(RU[h.n]||"")).toLowerCase().includes(q);
+const pos={},defPos=i=>D[i].t.includes("s")?5:1,P=i=>pos[i]||defPos(i);
+const PL=["Керри","Мид","Тройка","Поддержка","Полная поддержка"],tgt={my:null,en:null};
+
+const NK=8,NH=12,rn=k=>(Math.random()-.5)*k;
+function nnInit(){net.nn={N:D.length,E:D.map(()=>Array.from({length:NK},()=>rn(.4))),W:Array.from({length:NH},()=>Array.from({length:2*NK},()=>rn(.6))),b:Array(NH).fill(0),w:Array(NH).fill(0)}}
+if(!net.nn||net.nn.N!=D.length)nnInit();
+function nnF(X,Y){const n=net.nn,x=new Array(2*NK).fill(0);X.forEach(a=>{for(let k=0;k<NK;k++)x[k]+=n.E[a][k]});Y.forEach(b=>{for(let k=0;k<NK;k++)x[NK+k]+=n.E[b][k]});
+const h=n.W.map((r,j)=>Math.tanh(r.reduce((s,w,k)=>s+w*x[k],n.b[j])));return{x,h,o:h.reduce((s,v,j)=>s+v*n.w[j],0)}}
+const nnOut=(A,B)=>A.length&&B.length?nnF(A,B).o-nnF(B,A).o:0;
+function nnStep(A,B,gu,lr){const n=net.nn;[[A,B,1],[B,A,-1]].forEach(([X,Y,sg2])=>{const f=nnF(X,Y),dO=sg2*gu,dz=f.h.map((v,j)=>dO*n.w[j]*(1-v*v)),dx=new Array(2*NK).fill(0);
+n.W.forEach((r,j)=>{for(let k=0;k<2*NK;k++){dx[k]+=dz[j]*r[k];r[k]+=lr*dz[j]*f.x[k]}n.b[j]+=lr*dz[j];n.w[j]+=lr*dO*f.h[j]});
+X.forEach(a=>{for(let k=0;k<NK;k++)n.E[a][k]+=lr*dx[k]});Y.forEach(b=>{for(let k=0;k<NK;k++)n.E[b][k]+=lr*dx[NK+k]})})}
+const AF={S:"Strength",A:"Agility",I:"Intelligence",U:"Universal"};
+fetch("https://api.opendota.com/api/heroes").then(r=>r.json()).then(hs=>{const ix={},M={str:"S",agi:"A",int:"I",all:"U"};D.forEach((h,i)=>ix[norm(h.n)]=i);hs.forEach(h=>{const i=ix[norm(h.localized_name)];if(i!=null&&M[h.primary_attr])D[i].a=M[h.primary_attr]});draw()}).catch(()=>{});
+const STEAM_URL="";
+{const sb=$("#steam");sb.href=STEAM_URL||"#";sb.onclick=e=>{if(!STEAM_URL){e.preventDefault();alert("Ссылка на сайт друга ещё не указана в файле (STEAM_URL).")}}}
+let META=null,bk=null;const BC={},esc=t=>String(t).replace(/[<>&"]/g,"");
+const PH=[["start_game_items","Старт"],["early_game_items","Ранняя игра"],["mid_game_items","Середина"],["late_game_items","Поздняя игра"]];
+async function meta(){if(META)return META;const hs=await(await fetch("https://api.opendota.com/api/heroes")).json(),it=await(await fetch("https://api.opendota.com/api/constants/items")).json();
+const ix={},hid={},iid={};D.forEach((h,i)=>ix[norm(h.n)]=i);hs.forEach(h=>{const i=ix[norm(h.localized_name)];if(i!=null)hid[i]=h.id});
+for(const k in it)iid[it[k].id]=it[k].dname;return META={hid,iid}}
+async function builds(){const el=$("#builds"),key=my.join()+"|"+en.join();if(key===bk)return;bk=key;const CS=counterSet();
+if(!my.length){el.innerHTML='<div class="why">Выберите героев своей команды — покажу популярные сборки из OpenDota.</div>';return}
+el.innerHTML='<div class="why">Загружаю сборки…</div>';
+try{const M=await meta();const out=await Promise.all(my.map(async i=>{
+if(!BC[i]&&M.hid[i])BC[i]=await(await fetch(`https://api.opendota.com/api/heroes/${M.hid[i]}/itemPopularity`)).json();
+const d=BC[i];if(!d)return "";
+return `<div class="it"><b>${nm(D[i].n)}</b>`+PH.map(([k,l])=>{const e=Object.entries(d[k]||{}).sort((a,b)=>b[1]-a[1]).map(x=>M.iid[x[0]]).filter(Boolean).slice(0,6);
+return e.length?`<div class="why">${l}</div>${e.map(n=>`<span class="tag${CS.has(norm(n))?" hit":""}">${esc(n)}</span>`).join("")}`:""}).join("")+`</div>`}));
+if(key===bk)el.innerHTML=out.join("")}
+catch(e){bk=null;el.innerHTML='<div class="why">Не удалось загрузить сборки OpenDota. Попробуйте позже.</div>'}}
+$("#win").onclick=()=>train(1);$("#lose").onclick=()=>train(0);
+$("#rst").onclick=()=>{net={w:{},m:{},n:0};nnInit();save();draw()};
+draw();
+</script></body></html>
